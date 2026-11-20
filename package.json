@@ -1,6 +1,7 @@
 {
   "name": "todo-mern",
   "private": true,
+  "type": "module",
   "workspaces": ["server", "client"],
   "scripts": {
     "dev": "npm run dev -w server & npm run dev -w client",

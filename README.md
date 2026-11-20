@@ -4,7 +4,7 @@ Mobile-first to-do app: create, edit, delete and search tasks, grouped into **Mo
 
 - **client/**: React 19 + Vite + Tailwind CSS v4
 - **server/**: Express 5 + Mongoose (MongoDB)
-- **netlify/functions/api.mjs**: the same Express app served as a Netlify Function, so one Netlify site hosts both the UI and the API
+- **api/index.js** (Vercel) / **netlify/functions/api.mjs** (Netlify): the same Express app served as a Netlify Function, so one Netlify site hosts both the UI and the API
 
 ## Features
 - UI follows the provided **Figma design** (To-Do List Mobile): an onboarding screen ("Manage What To Do" → Get Started, shown once), a home screen with a search bar, a Mon–Sun day strip, **Task Complete / Task Pending this week** cards, a Weekly Progress bar, "Tasks Today" rows with checkbox / delete / edit icons, a round + button, the "Add New Task" bottom sheet and the search screen.
@@ -50,6 +50,11 @@ npm run dev -w client     # :5173, proxies /api → :4000
 npm test -w server   # 35 API tests (supertest + mongodb-memory-server), incl. the Netlify function
 npm test -w client   # 10 unit/component tests (week math, form validation)
 ```
+
+## Deploy to Vercel
+1. In MongoDB Atlas → Network Access, allow `0.0.0.0/0` (Vercel functions don't have fixed IPs).
+2. Import the repo into Vercel. `vercel.json` builds the client into `client/dist` and serves the Express API from `api/index.js` at `/api/*`.
+3. Add the environment variable `MONGODB_URI`, then deploy.
 
 ## Deploy to Netlify
 1. Create a free MongoDB Atlas cluster and allow access from anywhere (`0.0.0.0/0`). Netlify Functions don't have fixed IPs.
