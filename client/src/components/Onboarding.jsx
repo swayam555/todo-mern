@@ -13,7 +13,7 @@ export function Onboarding({ onStart }) {
         <Zigzag className="absolute top-[22%] left-4 w-20" />
         <Zigzag className="absolute right-4 bottom-8 w-20" />
       </div>
-      <div className="flex flex-1 flex-col px-6 pt-8 pb-[max(2rem,env(safe-area-inset-bottom))]">
+      <div className="flex flex-1 flex-col px-6 pt-8 pb-[max(var(--dock),env(safe-area-inset-bottom))] md:pb-8">
         <h1 className="text-2xl font-bold">Manage What To Do</h1>
         <p className="mt-3 max-w-[18rem] text-sm leading-relaxed text-muted">The best way to manage what you have to do, don’t forget your plans</p>
         <button type="button" onClick={onStart}

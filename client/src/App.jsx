@@ -184,7 +184,7 @@ export default function App() {
             })}
           </nav>
 
-          <main className="px-4 pt-5 pb-32 min-[360px]:px-5 md:px-8 md:pt-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-10">
+          <main className="px-4 pt-5 pb-[calc(var(--dock)+6rem)] min-[360px]:px-5 md:px-8 md:pt-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-10">
             <div className="min-w-0">
             {loadError && (
               <div role="alert" className="mb-4 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">
@@ -254,7 +254,7 @@ export default function App() {
             </section>
           </main>
 
-          <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto flex max-w-md justify-center md:max-w-3xl lg:max-w-6xl lg:justify-end lg:px-8 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+          <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto flex max-w-md justify-center md:max-w-3xl lg:max-w-6xl lg:justify-end lg:px-8 pb-[max(var(--dock),calc(env(safe-area-inset-bottom)+1.5rem))]">
             <button type="button" onClick={() => setSheet({ kind: 'create', day })} aria-label="Add task"
               className="pointer-events-auto grid size-14 place-items-center rounded-full bg-brand-600 text-white shadow-xl shadow-brand-600/40 transition hover:bg-brand-700 active:scale-95">
               <PlusIcon className="size-6" />

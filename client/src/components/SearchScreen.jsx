@@ -60,7 +60,7 @@ export function SearchScreen({ onBack, refreshKey, actions, initialStatus = 'all
         <Chips label="Priority" options={PRIOS} value={priority} onChange={setPriority} />
       </div>
 
-      <main className="flex-1 px-4 pb-10 md:px-8">
+      <main className="flex-1 px-4 pb-[calc(var(--dock)+1rem)] md:px-8">
         {error && <p role="alert" className="rounded-lg bg-rose-50 p-4 text-sm font-medium text-rose-700">{error}</p>}
         {!active && <Empty title="Find a task" body="Search by any word in a task’s title or description, or pick a filter above." />}
         {results?.length === 0 && active && !loading && (

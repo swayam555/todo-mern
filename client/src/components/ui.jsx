@@ -49,7 +49,7 @@ export function Sheet({ title, onClose, children, footer }) {
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-40 flex items-end justify-center sm:items-center sm:p-6">
+    <div className="fixed inset-0 z-40 flex items-end justify-center sm:items-center sm:p-6 sm:pb-[calc(var(--dock)+0.5rem)]">
       <div className="animate-fade absolute inset-0 bg-ink/40 backdrop-blur-[2px]" onClick={onClose} />
       <section
         ref={panel}
@@ -57,7 +57,7 @@ export function Sheet({ title, onClose, children, footer }) {
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
-        className="animate-sheet relative flex max-h-[92dvh] w-full max-w-md flex-col rounded-t-[22px] bg-white shadow-2xl outline-none sm:rounded-[22px]"
+        className="animate-sheet relative flex max-h-[92dvh] sm:max-h-[calc(100dvh-var(--dock)-2rem)] w-full max-w-md flex-col rounded-t-[22px] bg-white shadow-2xl outline-none sm:rounded-[22px]"
       >
         <div className="mx-auto mt-2.5 h-1.5 w-10 rounded-full bg-gray-200 sm:hidden" />
         <header className="flex items-center justify-between px-6 pt-4 pb-2">
@@ -67,7 +67,7 @@ export function Sheet({ title, onClose, children, footer }) {
           </button>
         </header>
         <div className="overflow-y-auto px-6 pb-4">{children}</div>
-        {footer && <footer className="border-t border-gray-100 px-6 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">{footer}</footer>}
+        {footer && <footer className="border-t border-gray-100 px-6 py-4 pb-[max(var(--dock),env(safe-area-inset-bottom))] sm:pb-4">{footer}</footer>}
       </section>
     </div>
   );
@@ -81,7 +81,7 @@ export function Toast({ toast, onClose }) {
   }, [toast, onClose]);
   if (!toast) return null;
   return (
-    <div role="status" className="animate-toast fixed bottom-24 left-1/2 z-50 flex w-[min(92vw,26rem)] -translate-x-1/2 items-center justify-between gap-3 rounded-xl bg-ink px-4 py-3 text-sm text-white shadow-xl">
+    <div role="status" className="animate-toast fixed bottom-[calc(var(--dock)+4.75rem)] left-1/2 z-50 flex w-[min(92vw,26rem)] -translate-x-1/2 items-center justify-between gap-3 rounded-xl bg-ink px-4 py-3 text-sm text-white shadow-xl">
       <span className={toast.error ? 'text-rose-200' : ''}>{toast.message}</span>
       {toast.action && (
         <button type="button" onClick={() => { toast.action.run(); onClose(); }} className="shrink-0 font-bold text-brand-200 hover:text-white">

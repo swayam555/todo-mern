@@ -14,6 +14,9 @@
   --color-canvas: #f7f8fc;
 }
 
+/* Bottom strip kept free of tappable UI: hosts like Netlify overlay a badge (~64px) in the bottom-right corner. */
+:root { --dock: 4.5rem; }
+
 html, body, #root { height: 100%; }
 body {
   @apply bg-canvas text-ink font-sans antialiased;
