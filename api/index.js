@@ -4,6 +4,11 @@ import { createApp, connectDb } from '../server/src/app.js';
 const app = createApp();
 
 export default async function handler(req, res) {
-  await connectDb();
+  try {
+    await connectDb();
+  } catch (err) {
+    console.error('DB connection failed:', err.message);
+    return res.status(503).json({ error: 'Database unavailable' });
+  }
   return app(req, res);
 }

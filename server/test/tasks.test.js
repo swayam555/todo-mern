@@ -227,3 +227,11 @@ describe('filters: priority & overdue', () => {
     expect((await a.get('/api/tasks?q=soon&overdue=1')).body).toEqual([]);
   });
 });
+
+describe('cleanUri', () => {
+  it('strips pasted key, quotes and spaces', async () => {
+    const { cleanUri } = await import('../src/app.js');
+    const u = 'mongodb+srv://u:p@h.net/todo';
+    for (const raw of [u, ` ${u} `, `"${u}"`, `'${u}'`, `MONGODB_URI=${u}`, `MONGODB_URI = "${u}"\n`]) expect(cleanUri(raw)).toBe(u);
+  });
+});

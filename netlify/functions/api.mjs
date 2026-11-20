@@ -9,6 +9,11 @@ const app = serverless(createApp(), {
 
 export const handler = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  await connectDb();
+  try {
+    await connectDb();
+  } catch (err) {
+    console.error('DB connection failed:', err.message);
+    return { statusCode: 503, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ error: 'Database unavailable' }) };
+  }
   return app(event, context);
 };

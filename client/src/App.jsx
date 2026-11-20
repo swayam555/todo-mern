@@ -150,32 +150,32 @@ export default function App() {
 
   if (!onboarded) {
     return (
-      <div className="mx-auto min-h-full max-w-md">
+      <div className="mx-auto min-h-full max-w-md md:grid md:min-h-dvh md:max-w-none md:place-items-center md:p-8">
         <Onboarding onStart={() => { try { localStorage.setItem(ONBOARDED, '1'); } catch { /* private mode */ } setOnboarded(true); }} />
       </div>
     );
   }
 
   return (
-    <div className="mx-auto min-h-full max-w-md bg-canvas">
+    <div className="mx-auto min-h-full max-w-md bg-canvas md:max-w-3xl lg:max-w-6xl">
       {screen === 'search' ? (
         <SearchScreen key={searchStatus} initialStatus={searchStatus} onBack={() => setScreen('home')} refreshKey={refreshKey} actions={actions} />
       ) : (
         <>
-          <header className="px-5 pt-[max(1.25rem,env(safe-area-inset-top))]">
+          <header className="px-4 pt-[max(1.25rem,env(safe-area-inset-top))] min-[360px]:px-5 md:px-8 md:pt-8">
             <button type="button" onClick={() => openSearch()} aria-label="Search tasks"
               className="flex w-full items-center justify-between rounded-lg bg-white px-4 py-3 text-left text-sm text-muted ring-1 ring-gray-200 ring-inset transition hover:ring-brand-400">
               Search for a task<SearchIcon className="size-5 text-ink" />
             </button>
           </header>
 
-          <nav aria-label="Days this week" className="mt-4 grid grid-cols-7 gap-1 px-4">
+          <nav aria-label="Days this week" className="mt-4 grid grid-cols-7 gap-0.5 px-3 min-[360px]:gap-1 min-[360px]:px-4 md:gap-2 md:px-8">
             {days.map((d) => {
               const on = d === day;
               const date = parseDayKey(d);
               return (
                 <button key={d} type="button" onClick={() => setDay(d)} aria-pressed={on} aria-label={formatDay(date)}
-                  className={`flex flex-col items-center gap-0.5 rounded-lg py-2 text-xs transition ${on ? 'bg-brand-600 text-white shadow-md shadow-brand-600/30' : 'text-muted hover:bg-white'}`}>
+                  className={`flex min-w-0 flex-col items-center gap-0.5 rounded-lg py-2 text-[11px] min-[360px]:text-xs md:py-3 md:text-sm transition ${on ? 'bg-brand-600 text-white shadow-md shadow-brand-600/30' : 'text-muted hover:bg-white'}`}>
                   <span className={on ? 'text-white/80' : d === today ? 'font-semibold text-brand-600' : ''}>{wd.format(date)}</span>
                   <span className={`text-sm font-medium ${on ? '' : 'text-ink/70'}`}>{String(date.getDate()).padStart(2, '0')}</span>
                   <span className={`size-1 rounded-full ${busyDays.has(d) ? (on ? 'bg-white' : 'bg-brand-400') : 'bg-transparent'}`} />
@@ -184,7 +184,8 @@ export default function App() {
             })}
           </nav>
 
-          <main className="px-5 pt-5 pb-32">
+          <main className="px-4 pt-5 pb-32 min-[360px]:px-5 md:px-8 md:pt-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-10">
+            <div className="min-w-0">
             {loadError && (
               <div role="alert" className="mb-4 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">
                 <p className="font-semibold">{loadError}</p>
@@ -201,7 +202,7 @@ export default function App() {
               </button>
             )}
 
-            <section className="grid grid-cols-2 gap-3" aria-label="This week">
+            <section className="grid grid-cols-2 gap-2 min-[360px]:gap-3 md:gap-4" aria-label="This week">
               <StatCard icon={<CheckSquareIcon className="size-5" />} label="Task Complete" value={thisWeek.completed}
                 tone="bg-brand-50" iconTone="bg-brand-600 text-white" testid="week-completed" />
               <StatCard icon={<XSquareIcon className="size-5" />} label="Task Pending" value={thisWeek.open}
@@ -237,8 +238,9 @@ export default function App() {
                 </ul>
               )}
             </section>
+            </div>
 
-            <section id="all-weeks" className="mt-8 scroll-mt-4">
+            <section id="all-weeks" className="mt-8 min-w-0 scroll-mt-4 lg:mt-0">
               <h2 className="text-lg font-semibold">All Weeks</h2>
               <p className="text-xs text-muted">Monday to Sunday · tap a week to see its tasks</p>
               <div className="mt-3 space-y-3">
@@ -252,7 +254,7 @@ export default function App() {
             </section>
           </main>
 
-          <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto flex max-w-md justify-center pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+          <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto flex max-w-md justify-center md:max-w-3xl lg:max-w-6xl lg:justify-end lg:px-8 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
             <button type="button" onClick={() => setSheet({ kind: 'create', day })} aria-label="Add task"
               className="pointer-events-auto grid size-14 place-items-center rounded-full bg-brand-600 text-white shadow-xl shadow-brand-600/40 transition hover:bg-brand-700 active:scale-95">
               <PlusIcon className="size-6" />
@@ -275,13 +277,13 @@ export default function App() {
 
 function StatCard({ icon, label, value, tone, iconTone, testid }) {
   return (
-    <div className={`rounded-lg p-3.5 ${tone}`}>
+    <div className={`min-w-0 rounded-lg p-3 min-[360px]:p-3.5 md:p-5 ${tone}`}>
       <div className="flex items-center gap-2">
         <span className={`grid size-7 shrink-0 place-items-center rounded-md ${iconTone}`}>{icon}</span>
-        <span className="text-[13px] font-medium whitespace-nowrap">{label}</span>
+        <span className="text-xs leading-tight font-medium min-[360px]:text-[13px] md:text-sm">{label}</span>
       </div>
-      <p className="mt-2 flex items-baseline gap-2">
-        <span className="text-3xl font-semibold tabular-nums" data-testid={testid}>{String(value).padStart(2, '0')}</span>
+      <p className="mt-2 flex flex-wrap items-baseline gap-x-2">
+        <span className="text-2xl font-semibold tabular-nums min-[360px]:text-3xl md:text-4xl" data-testid={testid}>{String(value).padStart(2, '0')}</span>
         <span className="text-xs text-muted">This Week</span>
       </p>
     </div>

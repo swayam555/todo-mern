@@ -31,8 +31,12 @@ export function createApp() {
 
 let connecting;
 /** Reused across warm serverless invocations. */
-export function connectDb(uri = process.env.MONGODB_URI) {
+/** Tolerate common copy-paste slips in the env value: spaces, quotes, a leading "MONGODB_URI=". */
+export const cleanUri = (uri) => (uri || '').trim().replace(/^MONGODB_URI\s*=\s*/, '').replace(/^(['"])(.*)\1$/, '$2').trim();
+
+export function connectDb(raw = process.env.MONGODB_URI) {
   if (mongoose.connection.readyState === 1) return Promise.resolve();
+  const uri = cleanUri(raw);
   if (!uri) throw new Error('MONGODB_URI is not set');
   connecting ||= mongoose.connect(uri, { serverSelectionTimeoutMS: 8000 }).catch((e) => { connecting = undefined; throw e; });
   return connecting;

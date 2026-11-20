@@ -7,7 +7,7 @@ const Zigzag = ({ className }) => (
 /** First-run welcome screen (Figma "Onboarding"). */
 export function Onboarding({ onStart }) {
   return (
-    <div className="flex min-h-dvh flex-col bg-white" data-testid="onboarding">
+    <div className="flex min-h-dvh w-full flex-col bg-white md:min-h-0 md:h-[min(52rem,calc(100dvh-4rem))] md:max-w-md md:overflow-hidden md:rounded-[28px] md:shadow-2xl md:shadow-brand-600/15" data-testid="onboarding">
       <div className="relative flex-[1.6] overflow-hidden bg-brand-600 text-white/40">
         <span className="absolute -top-10 -right-10 size-28 rounded-full border-[14px] border-white/25" />
         <Zigzag className="absolute top-[22%] left-4 w-20" />

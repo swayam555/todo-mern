@@ -38,7 +38,7 @@ export function SearchScreen({ onBack, refreshKey, actions, initialStatus = 'all
 
   return (
     <div className="flex min-h-full flex-col">
-      <header className="sticky top-0 z-10 flex items-center gap-2 bg-canvas/90 px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3 backdrop-blur">
+      <header className="sticky top-0 z-10 flex items-center gap-2 bg-canvas/90 px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3 md:px-8 md:pt-8 backdrop-blur">
         <button type="button" onClick={onBack} aria-label="Back to home" className="-ml-2 grid size-11 shrink-0 place-items-center rounded-full text-ink hover:bg-white">
           <BackIcon />
         </button>
@@ -55,12 +55,12 @@ export function SearchScreen({ onBack, refreshKey, actions, initialStatus = 'all
         </div>
       </header>
 
-      <div className="space-y-2 px-4 pb-3" role="group" aria-label="Filters">
+      <div className="space-y-2 px-4 pb-3 md:px-8" role="group" aria-label="Filters">
         <Chips label="Status" options={STATUS} value={status} onChange={setStatus} />
         <Chips label="Priority" options={PRIOS} value={priority} onChange={setPriority} />
       </div>
 
-      <main className="flex-1 px-4 pb-10">
+      <main className="flex-1 px-4 pb-10 md:px-8">
         {error && <p role="alert" className="rounded-lg bg-rose-50 p-4 text-sm font-medium text-rose-700">{error}</p>}
         {!active && <Empty title="Find a task" body="Search by any word in a task’s title or description, or pick a filter above." />}
         {results?.length === 0 && active && !loading && (
@@ -69,7 +69,7 @@ export function SearchScreen({ onBack, refreshKey, actions, initialStatus = 'all
         {results?.length > 0 && (
           <>
             <p className="mb-2 px-1 text-sm font-semibold text-muted" aria-live="polite">{results.length} result{results.length === 1 ? '' : 's'}</p>
-            <ul className="space-y-2.5">
+            <ul className="grid gap-2.5 lg:grid-cols-2">
               {results.map((t) => (
                 <li key={t.id} className="rounded-lg bg-white p-3.5 ring-1 ring-gray-200/80" data-testid="search-result">
                   <div className="flex items-start gap-3">
@@ -98,7 +98,7 @@ export function SearchScreen({ onBack, refreshKey, actions, initialStatus = 'all
 
 function Chips({ label, options, value, onChange }) {
   return (
-    <div className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none]" role="radiogroup" aria-label={label}>
+    <div className="-mx-4 flex gap-2 overflow-x-auto px-4 md:-mx-8 md:flex-wrap md:px-8 [scrollbar-width:none]" role="radiogroup" aria-label={label}>
       {options.map(([v, text]) => (
         <button key={v} type="button" role="radio" aria-checked={value === v} onClick={() => onChange(v)}
           className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium ring-1 ring-inset transition ${

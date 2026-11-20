@@ -8,6 +8,7 @@ Mobile-first to-do app: create, edit, delete and search tasks, grouped into **Mo
 
 ## Features
 - UI follows the provided **Figma design** (To-Do List Mobile): an onboarding screen ("Manage What To Do" → Get Started, shown once), a home screen with a search bar, a Mon–Sun day strip, **Task Complete / Task Pending this week** cards, a Weekly Progress bar, "Tasks Today" rows with checkbox / delete / edit icons, a round + button, the "Add New Task" bottom sheet and the search screen.
+- **Responsive for every screen size**, tested from 280 px phones to 1920 px desktops and in landscape. Phones get the Figma single-column layout. Tablets get a wider column. Laptops and desktops get two columns: today's tasks on the left and all weeks on the right. Search results show in a grid, and the onboarding becomes a centred card.
 - Tap a day in the strip to list that day's tasks. "View All" jumps to the week-by-week cards.
 - Create a task with title*, description, date & time*, and priority (Low / Medium / High). New tasks default to the open week.
 - Edit any field, and mark a task **Completed** or **In progress** (checkbox or the details sheet). Week cards update straight away.
