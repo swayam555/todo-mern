@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-50: #eef1fe;
+  --color-brand-100: #dde3fd;
+  --color-brand-200: #bcc7fb;
+  --color-brand-400: #7b92f2;
+  --color-brand-500: #5a76ee;
+  --color-brand-600: #4664eb;
+  --color-brand-700: #3550d4;
+  --color-ink: #1b1d28;
+  --color-muted: #8a8fa3;
+  --color-canvas: #f7f8fc;
+}
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-canvas text-ink font-sans antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@keyframes sheet-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes toast-in { from { transform: translate(-50%, 16px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+.animate-sheet { animation: sheet-in 260ms cubic-bezier(.2,.8,.2,1); }
+.animate-fade { animation: fade-in 180ms ease-out; }
+.animate-toast { animation: toast-in 220ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sheet, .animate-fade, .animate-toast { animation: none; }
+  * { transition-duration: 0ms !important; }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator { opacity: .55; cursor: pointer; }

@@ -1,0 +1,21 @@
+const base = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true };
+const I = (path) => function Icon({ className = 'size-5' }) {
+  return <svg viewBox="0 0 24 24" className={className} {...base}>{path}</svg>;
+};
+export const SearchIcon = I(<><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></>);
+export const PlusIcon = I(<path d="M12 5v14M5 12h14" />);
+export const ChevronIcon = I(<path d="m6 9 6 6 6-6" />);
+export const BackIcon = I(<path d="M15 18 9 12l6-6" />);
+export const CloseIcon = I(<path d="M18 6 6 18M6 6l12 12" />);
+export const CheckIcon = I(<path d="M5 12.5 10 17l9-10" />);
+export const TrashIcon = I(<><path d="M4 7h16M10 11v6M14 11v6" /><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3" /></>);
+export const EditIcon = I(<><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z" /><path d="m13.5 6.5 4 4" /></>);
+export const EyeIcon = I(<><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" /></>);
+export const ClockIcon = I(<><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>);
+export const CalendarIcon = I(<><rect x="3" y="5" width="18" height="16" rx="3" /><path d="M3 10h18M8 3v4M16 3v4" /></>);
+export const FlagIcon = I(<path d="M5 21V4m0 0h11l-2 4 2 4H5" />);
+export const XSquareIcon = I(<><rect x="4" y="4" width="16" height="16" rx="3" /><path d="m9 9 6 6M15 9l-6 6" /></>);
+export const CheckSquareIcon = I(<><rect x="4" y="4" width="16" height="16" rx="3" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>);
+export const CopyIcon = I(<><rect x="8" y="8" width="12" height="12" rx="2.5" /><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" /></>);
+export const SkipIcon = I(<><path d="M5 12h12M13 7l5 5-5 5" /><path d="M20 5v14" /></>);
+export const AlertIcon = I(<><circle cx="12" cy="12" r="9" /><path d="M12 7.5v5M12 16.2v.1" /></>);

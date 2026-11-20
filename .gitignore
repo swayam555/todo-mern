@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.netlify
+*.log
+.playwright-cli
+.env.*
+!.env.example
